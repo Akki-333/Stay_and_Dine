@@ -78,6 +78,7 @@ const db = mysql.createConnection({
     user: process.env.DB_USER || "root",
     password: process.env.DB_PASSWORD || "",
     database: process.env.DB_NAME || "hotel_booking",
+    ssl: process.env.DB_HOST && process.env.DB_HOST !== "localhost" ? { minVersion: 'TLSv1.2', rejectUnauthorized: true } : false
   });
 
 
