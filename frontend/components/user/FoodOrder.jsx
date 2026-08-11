@@ -17,7 +17,7 @@ const FoodOrder = () => {
     const [editFood, setEditFood] = useState(null);
     const [preview, setPreview] = useState('');
 
-    const categories = ['Starter', 'Main Course', 'Dessert', 'Beverage'];
+    const categories = ['Starter', 'Main Course', 'Dessert', 'Drinks'];
 
     useEffect(() => {
         fetchFoods();

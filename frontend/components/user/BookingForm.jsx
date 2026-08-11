@@ -51,7 +51,7 @@ const [order, setOrder] = useState({
   starter: "",
   mainCourse: "",
   dessert: "",
-  beverage: "",
+  drink: "",
   specialInstructions: ""
 });
 
@@ -192,9 +192,9 @@ const handleOrderChange = (e) => {
         if (dessert) selectedFoods.push(dessert);
     }
 
-    if (order.beverage) {
-        const beverage = groupedFoods.Beverages.find(food => food.name === order.beverage);
-        if (beverage) selectedFoods.push(beverage);
+    if (order.drink) {
+        const drink = groupedFoods.Drinks.find(food => food.name === order.drink);
+        if (drink) selectedFoods.push(drink);
     }
 
     return selectedFoods;
@@ -878,12 +878,12 @@ const handleSkipFood = () => {
                 </Form.Select>
             </Form.Group>
 
-            {/* Beverage Selection */}
+            {/* Drink Selection */}
             <Form.Group className="mb-3">
-                <Form.Label>🥤 Beverage</Form.Label>
-                <Form.Select name="beverage" value={order.beverage} onChange={handleChange}>
-                    <option value="">Select a beverage</option>
-                    {groupedFoods.Beverages?.map((food) => (
+                <Form.Label>🥤 Drink</Form.Label>
+                <Form.Select name="drink" value={order.drink} onChange={handleChange}>
+                    <option value="">Select a drink</option>
+                    {groupedFoods.Drinks?.map((food) => (
                         <option key={food.id} value={food.name}>
                             {food.name} - ₹{food.price}
                         </option>

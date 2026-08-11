@@ -172,7 +172,7 @@ const AddFood = () => {
                   <option value="Starter" />
                   <option value="Main Course" />
                   <option value="Desserts" />
-                  <option value="Beverages" />
+                  <option value="Drinks" />
                   <option value="South Indian" />
                   <option value="Italian" />
                   <option value="Fast Food" />
