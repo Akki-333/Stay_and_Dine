@@ -15,7 +15,6 @@ const MyBookings = lazy(() => import("../components/user/MyBookings"));
 const CouponCreation = lazy(() => import("../components/admin/CouponCreation"));
 const AddFood = lazy(() => import("../components/admin/AddFood"));
 const FoodOrder = lazy(() => import("../components/user/FoodOrder"));
-const MenuCategory = lazy(() => import("../components/user/MenuCategory"));
 const OrderSummary = lazy(() => import("../components/user/OrderSummary"));
 
 const NotFound = () => (
@@ -73,7 +72,6 @@ const App = () => {
               } />
               <Route path="/food-order"       element={<Layout><FoodOrder /></Layout>} />
               <Route path="/add-food"         element={<AdminRoute><Layout><AddFood /></Layout></AdminRoute>} />
-              <Route path="/menu/:category"   element={<Layout><MenuCategory /></Layout>} />
               <Route path="/my-bookings"      element={<Layout><MyBookings /></Layout>} />
               <Route path="/booking-form"     element={<Layout><BookingForm /></Layout>} />
               <Route path="/order-summary"    element={<Layout><OrderSummary /></Layout>} />

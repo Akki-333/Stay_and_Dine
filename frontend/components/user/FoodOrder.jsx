@@ -157,11 +157,16 @@ const FoodOrder = () => {
                                     <td>{food.category}</td>
                                     <td>₹{food.price}</td>
                                     <td>
-                                        {food.image_url && (
+                                        {food.image && (
                                             <img
-                                                src={`http://localhost:5000/uploads/${food.image_url}`}
+                                                src={
+                                                    food.image.startsWith('http') 
+                                                        ? food.image 
+                                                        : `http://localhost:5000${food.image}`
+                                                }
                                                 alt={food.name}
-                                                style={{ width: '50px', height: '50px', borderRadius: '8px' }}
+                                                style={{ width: '50px', height: '50px', borderRadius: '8px', objectFit: 'cover' }}
+                                                onError={e => e.target.src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800"} 
                                             />
                                         )}
                                     </td>

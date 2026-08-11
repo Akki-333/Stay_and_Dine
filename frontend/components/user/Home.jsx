@@ -70,7 +70,11 @@ const SafeCategoryDisplay = () => {
           }}>
             <div style={{ height: "200px", background: "#f1f5f9", position: "relative" }}>
               <img 
-                src={item.image || "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800"} 
+                src={
+                  item.image 
+                    ? (item.image.startsWith('http') ? item.image : `http://localhost:5000${item.image}`) 
+                    : "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800"
+                } 
                 alt={item.name} 
                 style={{ width: "100%", height: "100%", objectFit: "cover" }} 
                 onError={e => e.target.src="https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800"} 
