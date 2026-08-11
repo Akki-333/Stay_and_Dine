@@ -53,13 +53,21 @@ The platform boasts a highly visual 2D interactive seating map, real-time WebSoc
    ```
 
 ### 2. Environment Configuration
+**Backend:**
 Create a `.env` file in the `backend/` directory:
 ```env
+PORT=5000
 DB_HOST=localhost
 DB_USER=root
 DB_PASSWORD=your_mysql_password
 DB_NAME=hotel_booking
 JWT_SECRET=your_super_secret_jwt_key
+```
+
+**Frontend (Optional / Production):**
+Create a `.env` file in the `frontend/` directory if you deploy the backend somewhere else:
+```env
+VITE_API_URL=https://your-production-backend.com
 ```
 
 ### 3. Install Dependencies
