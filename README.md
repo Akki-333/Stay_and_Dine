@@ -29,16 +29,26 @@ The platform boasts a highly visual 2D interactive seating map, real-time WebSoc
 
 ---
 
-## 🏗️ Technical Architecture
+## 🏗️ Technical Architecture & Cloud Deployment
 
-| Layer | Technologies Used | Purpose |
+This platform is engineered using a fully decoupled, production-grade architecture deployed across modern cloud services.
+
+### 🌐 Live Deployment
+- **Frontend Hosting:** Vercel (CI/CD Integrated)
+- **Backend API Hosting:** Render (Node.js Web Service)
+- **Cloud Database:** TiDB Serverless (MySQL-compatible, highly scalable)
+
+### 💻 Tech Stack & Security Features
+| Layer | Technologies Used | Key Implementation Details |
 | :--- | :--- | :--- |
-| **Frontend** | React 18, Vite, React Router DOM | High-performance SPA architecture |
-| **Styling** | Vanilla CSS, React Bootstrap | Custom 2D layouts and responsive primitives |
-| **Backend** | Node.js, Express.js | Robust REST API server |
-| **Database** | MySQL2 | Relational schema with parameterized queries |
-| **Security** | `jsonwebtoken`, `bcrypt` | Hashed passwords and secure session tokens |
-| **Real-Time** | `ws` (WebSockets) | Live bidirectional event broadcasting |
+| **Frontend UI** | React 18, Vite, React Router DOM | High-performance SPA with seamless client-side routing. |
+| **API & Networking** | Axios, Axios Interceptors | Global middleware automatically injects JWT Bearer tokens into every HTTP request. |
+| **Styling** | Vanilla CSS, React Bootstrap | Custom 2D layouts mixed with robust, responsive primitives. |
+| **Backend Core** | Node.js, Express.js | Robust REST API server with decoupled service routing. |
+| **File Management** | Multer Middleware | Secure multipart/form-data processing for binary image uploads with strict type filtering. |
+| **Database Security**| TiDB, MySQL2, Parameterized Queries | Highly secure TLS 1.2 encrypted connections protecting against SQL Injection. |
+| **Authentication** | `jsonwebtoken`, `bcrypt` | Hardened route protection and secure one-way password hashing. |
+| **Real-Time Data** | `ws` (WebSockets) | Live bidirectional event broadcasting for occupancy tracking. |
 
 ---
 
