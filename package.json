@@ -1,0 +1,17 @@
+{
+  "name": "stay-and-dine",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "frontend",
+    "backend"
+  ],
+  "scripts": {
+    "start": "concurrently \"npm run start:frontend\" \"npm run start:backend\"",
+    "start:frontend": "npm run dev -w stay-and-dine-frontend",
+    "start:backend": "npm start -w stay-and-dine-backend"
+  },
+  "devDependencies": {
+    "concurrently": "^8.0.0"
+  }
+}
