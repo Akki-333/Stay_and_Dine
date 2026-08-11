@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../../src/config/api";
 import { toast } from "react-toastify";
 import "../styles/AdminDashboard.css";
 
@@ -60,7 +60,7 @@ const AddFood = () => {
 
   const fetchFoods = async () => {
     try {
-      const res = await axios.get("http://localhost:5000/get-foods");
+      const res = await api.get("/get-foods");
       setFoods(res.data);
     } catch (error) {
       console.error("Failed to fetch foods", error);
@@ -82,10 +82,10 @@ const AddFood = () => {
 
     try {
       if (editFood) {
-        await axios.put(`http://localhost:5000/update-food/${editFood.id}`, foodData);
+        await api.put(`/update-food/${editFood.id}`, foodData);
         toast.success("Food updated successfully! ✨");
       } else {
-        await axios.post("http://localhost:5000/add-food", foodData);
+        await api.post("/add-food", foodData);
         toast.success("New dish added to menu! 🍽️");
       }
       fetchFoods();
@@ -113,7 +113,7 @@ const AddFood = () => {
   const handleDelete = async (id) => {
     if (window.confirm("Are you sure you want to delete this food item?")) {
       try {
-        await axios.delete(`http://localhost:5000/delete-food/${id}`);
+        await api.delete(`/delete-food/${id}`);
         fetchFoods();
         toast.success("Food deleted successfully.");
       } catch (error) {

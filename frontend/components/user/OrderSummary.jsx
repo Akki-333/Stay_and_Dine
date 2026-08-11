@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import api from "../../src/config/api";
 import { Button, Card, Row, Col } from 'react-bootstrap';
 import Swal from 'sweetalert2';
 
@@ -47,7 +47,7 @@ const OrderSummary = () => {
         };
     
         try {
-            const response = await axios.post("http://localhost:5000/bookings", finalBookingData);
+            const response = await api.post("/bookings", finalBookingData);
     
             Swal.fire({
                 title: "Booking Confirmed!",
@@ -58,7 +58,7 @@ const OrderSummary = () => {
     
             // Delete the applied coupon if exists
             if (bookingData.coupon) {
-                await axios.delete(`http://localhost:5000/coupons/${bookingData.coupon}`);
+                await api.delete(`/coupons/${bookingData.coupon}`);
             }
     
             // Clear local storage

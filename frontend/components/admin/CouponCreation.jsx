@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
+import api from "../../src/config/api";
 import { toast } from "react-toastify";
 import "../styles/AdminDashboard.css";
 
@@ -47,7 +47,7 @@ const CouponCreation = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await axios.get("http://localhost:5000/eligible-users");
+        const res = await api.get("/eligible-users");
         setUsers(res.data);
       } catch (err) {
         console.error("Error fetching users:", err);
@@ -59,7 +59,7 @@ const CouponCreation = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/create-coupon", {
+      await api.post("/create-coupon", {
         user_id: selectedUser,
         coupon_code: couponCode,
         discount,

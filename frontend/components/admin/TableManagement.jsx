@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../../src/config/api";
 import { toast } from "react-toastify";
 import "../styles/AdminDashboard.css";
 
@@ -79,13 +79,13 @@ const TableManagement = () => {
   }, []);
 
   const fetchTables = () => {
-    axios.get("http://localhost:5000/tables")
+    api.get("/tables")
       .then((res) => setTables(res.data))
       .catch((err) => console.error("Error fetching tables:", err));
   };
 
   const fetchBranches = () => {
-    axios.get("http://localhost:5000/branches")
+    api.get("/branches")
       .then((res) => {
         setBranches(res.data);
         if (res.data && res.data.length > 0) {
@@ -118,7 +118,7 @@ const TableManagement = () => {
     const chairCount = getChairCount(tableType);
     const chairsList = Array.from({ length: chairCount }, (_, i) => i + 1);
 
-    axios.post("http://localhost:5000/tables", {
+    api.post("/tables", {
       branch_id: branchId,
       table_name: tableName,
       booked,
@@ -141,7 +141,7 @@ const TableManagement = () => {
 
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to permanently delete this table?")) {
-      axios.delete(`http://localhost:5000/tables/${id}`).then(() => {
+      api.delete(`/tables/${id}`).then(() => {
         setTables((prev) => prev.filter((table) => table.id !== id));
         toast.success("Table removed.");
       }).catch(() => toast.error("Failed to delete table."));
@@ -157,7 +157,7 @@ const TableManagement = () => {
 
   const handleSaveEdit = (e) => {
     e.preventDefault();
-    axios.put(`http://localhost:5000/tables/${editTable.id}`, {
+    api.put(`/tables/${editTable.id}`, {
       table_name: editTableName,
       booked: editBookedStatus,
     })

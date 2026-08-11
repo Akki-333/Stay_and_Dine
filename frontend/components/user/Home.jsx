@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import "../styles/Home.css";
-import api from "../../src/config/api";
+import api, { API_BASE_URL } from "../../src/config/api";
 
 const SafeCategoryDisplay = () => {
   const navigate = useNavigate();
@@ -72,7 +72,7 @@ const SafeCategoryDisplay = () => {
               <img 
                 src={
                   item.image 
-                    ? (item.image.startsWith('http') ? item.image : `http://localhost:5000${item.image}`) 
+                    ? (item.image.startsWith('http') ? item.image : `${API_BASE_URL}${item.image}`) 
                     : "https://images.unsplash.com/photo-1546833999-b9f581a1996d?w=800"
                 } 
                 alt={item.name} 

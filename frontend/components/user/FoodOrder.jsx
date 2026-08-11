@@ -1,7 +1,7 @@
 
 import '../styles/FoodManagement.css';
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
+import api, { API_BASE_URL } from "../../src/config/api";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 const FoodOrder = () => {
@@ -25,7 +25,7 @@ const FoodOrder = () => {
 
     const fetchFoods = async () => {
         try {
-            const res = await axios.get('http://localhost:5000/get-foods');
+            const res = await api.get('/get-foods');
             setFoods(res.data);
         } catch (error) {
             console.error('Failed to fetch foods', error);
@@ -42,7 +42,7 @@ const FoodOrder = () => {
         formData.append('image', newFood.image);
 
         try {
-            await axios.post('http://localhost:5000/add-food', formData, {
+            await api.post('/add-food', formData, {
                 headers: { 'Content-Type': 'multipart/form-data' },
             });
             fetchFoods();
@@ -162,7 +162,7 @@ const FoodOrder = () => {
                                                 src={
                                                     food.image.startsWith('http') 
                                                         ? food.image 
-                                                        : `http://localhost:5000${food.image}`
+                                                        : `${API_BASE_URL}${food.image}`
                                                 }
                                                 alt={food.name}
                                                 style={{ width: '50px', height: '50px', borderRadius: '8px', objectFit: 'cover' }}

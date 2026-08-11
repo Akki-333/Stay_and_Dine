@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import api from "../../src/config/api";
 import { toast } from "react-toastify";
 import "../styles/AdminDashboard.css";
 
@@ -69,7 +69,7 @@ const BranchManagement = () => {
   }, []);
 
   const fetchBranches = () => {
-    axios.get("http://localhost:5000/branches").then((res) => setBranches(res.data));
+    api.get("/branches").then((res) => setBranches(res.data));
   };
 
   const handleAddBranch = async (e) => {
@@ -86,7 +86,7 @@ const BranchManagement = () => {
     if (hotelImg2) formData.append("hotel_img2", hotelImg2);
 
     try {
-      await axios.post("http://localhost:5000/branches", formData, {
+      await api.post("/branches", formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       toast.success("Hotel Branch successfully added!");
@@ -105,7 +105,7 @@ const BranchManagement = () => {
 
   const handleDelete = (id) => {
     if (window.confirm("Are you sure you want to delete this hotel profile entirely?")) {
-      axios.delete(`http://localhost:5000/branches/${id}`).then(() => {
+      api.delete(`/branches/${id}`).then(() => {
         toast.success("Hotel profile deleted.");
         fetchBranches();
       });
@@ -131,7 +131,7 @@ const BranchManagement = () => {
     if (hotelImg2) formData.append("hotel_img2", hotelImg2);
 
     try {
-      await axios.put(`http://localhost:5000/branches/${editingBranch.id}`, formData, {
+      await api.put(`/branches/${editingBranch.id}`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       toast.success("Hotel Profile updated successfully!");
